@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc static_string.c test.c
+gcc sstr.c test.c
 ./a.out

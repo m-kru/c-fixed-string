@@ -1,4 +1,4 @@
-#include "static_string.h"
+#include "sstr.h"
 
 void sstr8_write_char(sstr8_t *s, char x) {
 	if (sstr_len(s) < 7) {

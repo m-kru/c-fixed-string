@@ -1,5 +1,5 @@
-#ifndef _STATIC_STRING_H_
-#define _STATIC_STRING_H_
+#ifndef _SSTR_H_
+#define _SSTR_H_
 
 #include <inttypes.h>
 #include <stdio.h>
@@ -77,4 +77,4 @@ void sstr8_write_char(sstr8_t *s, char x);
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x);
 
-#endif // _STATIC_STRING_H_
+#endif // _SSTR_H_

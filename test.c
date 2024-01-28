@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "static_string.h"
+#include "sstr.h"
 
 void test_sstr8(void) {
 	sstr8_init(s, "");
