@@ -68,9 +68,9 @@ void sstr8_string_write(sstr8_t *s, char *x) {
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 	const uint8_t size = 8 - sstr_len(s);
-	if ((  0 <= x && x <  10  && size < 2) ||
-	    ( 10 <= x && x <  100 && size < 3) ||
-	    (100 <= x && x <= 255 && size < 4)) {
+	if ((0 <= x && x < 10 && size < 2) ||
+	    (10 <= x && x < 100 && size < 3) ||
+	    (100 <= x && x <= UINT8_MAX && size < 4)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
 #endif
@@ -83,11 +83,11 @@ void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 
 void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
 	const uint8_t size = 8 - sstr_len(s);
-	if ((    0 <= x && x <  10    && size < 2) ||
-	    (   10 <= x && x <  100   && size < 3) ||
-	    (  100 <= x && x <  100   && size < 4) ||
-	    ( 1000 <= x && x <  10000 && size < 5) ||
-	    (10000 <= x && x <= 65535 && size < 6)) {
+	if ((0 <= x && x < 10 && size < 2) ||
+	    (10 <= x && x < 100 && size < 3) ||
+	    (100 <= x && x < 100&& size < 4) ||
+	    (1000 <= x && x < 10000 && size < 5) ||
+	    (10000 <= x && x <= UINT16_MAX && size < 6)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT16, &x);
 #endif
