@@ -4,10 +4,17 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-#define SSTR8  0x00
-#define SSTR16 0x01
-#define SSTR32 0x02
-#define SSTR64 0x03
+#define SSTR8    0x00
+#define SSTR16   0x01
+#define SSTR32   0x02
+#define SSTR64   0x03
+#define SSTR128  0x04
+#define SSTR256  0x05
+#define SSTR512  0x06
+#define SSTR1024 0x07
+#define SSTR2048 0x08
+#define SSTR4096 0x09
+#define SSTR8192 0x0A
 
 typedef struct {
 	uint16_t _len;
