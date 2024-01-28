@@ -17,6 +17,7 @@ typedef struct {
 typedef enum {
 	SSTR_CHAR,
 	SSTR_UINT8,
+	SSTR_UINT16,
 } sstr_arg_type_t;
 
 #if !defined SSTR_NO_SPACE_CB && defined SSTR_DEFAULT_CB

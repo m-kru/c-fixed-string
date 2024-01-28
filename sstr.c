@@ -22,6 +22,13 @@ void sstr_no_space_cb(
 			fn_name, *((uint8_t *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
+	case SSTR_UINT16:
+		fprintf(
+			SSTR_CB_STREAM,
+			"%s: no buf space to write uint16 '%u' to \"%s\"\n",
+			fn_name, *((uint16_t *)arg), ((char *)str + sizeof(sstr_t))
+		);
+		break;
 	}
 }
 #endif
@@ -39,7 +46,9 @@ void sstr8_write_char(sstr8_t *s, char x) {
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 	const uint8_t size = 8 - sstr_len(s);
-	if ((x < 10 && size < 2) || (x < 100 && size < 3) || (x < 1000 && size < 4)) {
+	if ((x < 10 && size < 2) ||
+	    (10 <= x && x < 100 && size < 3) ||
+	    (100 <= x <= 255 && size < 4)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
 #endif
@@ -52,9 +61,13 @@ void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 
 void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
 	const uint8_t size = 8 - sstr_len(s);
-	if (){
+	if ((x < 10 && size < 2) ||
+	    (10 <= x && x < 100 && size < 3) ||
+	    (100 <= x <= 100 && size < 4) ||
+	    (1000 <= x <= 10000 && size < 5) ||
+	    (10000 <= x <= 65535 && size < 6)) {
 #ifdef SSTR_NO_SPACE_CB
-		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT16, &x);
 #endif
 		return;
 	}
