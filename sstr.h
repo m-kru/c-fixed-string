@@ -16,6 +16,7 @@ typedef struct {
 
 typedef enum {
 	SSTR_CHAR,
+	SSTR_STRING,
 	SSTR_UINT8,
 	SSTR_UINT16,
 } sstr_arg_type_t;
@@ -43,8 +44,8 @@ void sstr_no_space_cb(
  * sstr_reset resets static string to be empty.
  */
 #define sstr_reset(s) do { \
-	s->_buf[0] = 0;    \
-	s->_str._len = 0;  \
+	(s)->_buf[0] = 0;    \
+	(s)->_str._len = 0;  \
 } while(0)
 
 #define sstr_print(str) do {            \
@@ -94,10 +95,12 @@ void sstr8_write_char(sstr8_t *s, char x);
 
 #define sstr_write(s, x) _Generic((s),         \
 	sstr8_t*: _Generic((x),                \
+		char*    : sstr8_string_write, \
 		uint8_t  : sstr8_uint8_write,  \
 		uint16_t : sstr8_uint16_write) \
 )(s, x)
 
+void sstr8_string_write(sstr8_t *s, char *x);
 void sstr8_uint8_write(sstr8_t *s, uint8_t x);
 void sstr8_uint16_write(sstr8_t *s, uint16_t x);
 
