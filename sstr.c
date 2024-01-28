@@ -32,7 +32,7 @@ void sstr8_write_char(sstr8_t *s, char x) {
 		s->_str._len++;
 	} else {
 #ifdef SSTR_NO_SPACE_CB
-	sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_CHAR, &x);
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_CHAR, &x);
 #endif
 	}
 }
