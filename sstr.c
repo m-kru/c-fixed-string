@@ -11,14 +11,14 @@ void sstr_no_space_cb(
 	case SSTR_CHAR:
 		fprintf(
 			SSTR_CB_STREAM,
-			"%s: not enough space to write char '%c' to string \"%s\"\n",
+			"%s: no buf space to write char '%c' to \"%s\"\n",
 			fn_name, *((char *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
 	case SSTR_UINT8:
 		fprintf(
 			SSTR_CB_STREAM,
-			"%s: not enough space to write uint8 '%u' to string \"%s\"\n",
+			"%s: no buf space to write uint8 '%u' to \"%s\"\n",
 			fn_name, *((uint8_t *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
