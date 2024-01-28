@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc sstr.c test.c
+gcc -DSSTR_NO_SPACE_CB -DSSTR_DEFAULT_CB  sstr.c test.c
 ./a.out

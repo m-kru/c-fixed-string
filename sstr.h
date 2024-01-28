@@ -9,6 +9,35 @@
 #define SSTR32 0x02
 #define SSTR64 0x03
 
+typedef struct {
+	uint16_t _len;
+	uint8_t  _type;
+} sstr_t;
+
+typedef enum {
+	SSTR_CHAR,
+	SSTR_UINT8,
+} sstr_arg_type_t;
+
+#if !defined SSTR_NO_SPACE_CB && defined SSTR_DEFAULT_CB
+	#error "SSTR_DEFAULT_CB requires SSTR_NO_SPACE_CB to be defined as well"
+#endif
+#if !defined SSTR_DEFAULT_CB && defined SSTR_CB_STREAM
+	#error "SSTR_CB_STREAM requires SSTR_DEFAULT_CB to be defined as well"
+#endif
+#if defined SSTR_DEFAULT_CB && !defined SSTR_CB_STREAM
+	#define SSTR_CB_STREAM stderr
+#endif
+
+#ifdef SSTR_NO_SPACE_CB
+void sstr_no_space_cb(
+	const char * fn_name,
+	const sstr_t * str,
+	const sstr_arg_type_t arg_type,
+	const void * arg
+);
+#endif
+
 /*
  * sstr_reset resets static string to be empty.
  */
@@ -28,11 +57,6 @@
 	else                              \
 		printf("\n");             \
 } while (0)
-
-typedef struct {
-	uint16_t _len;
-	uint8_t  _type;
-} sstr_t;
 
 typedef struct {
 	sstr_t _str;
