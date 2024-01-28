@@ -91,14 +91,13 @@ uint8_t _sstr_ptr_len(sstr8_t *s) {
 
 void sstr8_write_char(sstr8_t *s, char x);
 
-#define sstr_write(s, x) _Generic((s), \
-	sstr8_t*: sstr8_uint8_write    \
-)(s, x)
-
-#define sstr8_write(s, x) _Generic((x), \
-	uint8_t: sstr8_uint8_write      \
+#define sstr_write(s, x) _Generic((s),         \
+	sstr8_t*: _Generic((x),                \
+		uint8_t  : sstr8_uint8_write,  \
+		uint16_t : sstr8_uint16_write) \
 )(s, x)
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x);
+void sstr8_uint16_write(sstr8_t *s, uint16_t x);
 
 #endif // _SSTR_H_

@@ -39,13 +39,26 @@ void sstr8_write_char(sstr8_t *s, char x) {
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 	const uint8_t size = 8 - sstr_len(s);
-	if ((x < 10 && size < 2) || (x < 100 && size < 3)|| (x < 1000 && size < 4)) {
+	if ((x < 10 && size < 2) || (x < 100 && size < 3) || (x < 1000 && size < 4)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
 #endif
 		return;
 	}
 	snprintf(s->_buf + sstr_len(s), size, "%"PRIu8, x);
+	while (s->_buf[sstr_len(s)] != 0)
+		s->_str._len++;
+}
+
+void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
+	const uint8_t size = 8 - sstr_len(s);
+	if (){
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
+#endif
+		return;
+	}
+	snprintf(s->_buf + sstr_len(s), size, "%"PRIu16, x);
 	while (s->_buf[sstr_len(s)] != 0)
 		s->_str._len++;
 }
