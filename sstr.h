@@ -102,7 +102,8 @@ void sstr8_write_char(sstr8_t *s, char x);
 		uint32_t : sstr8_write_u32,    \
 		uint64_t : sstr8_write_u64,    \
 		int8_t   : sstr8_write_i8,     \
-		int16_t  : sstr8_write_i16)    \
+		int16_t  : sstr8_write_i16,    \
+		int32_t  : sstr8_write_i32)    \
 )(s, x)
 
 void sstr8_write_bool(sstr8_t *s, bool x);
@@ -113,5 +114,6 @@ void sstr8_write_u32(sstr8_t *s, uint32_t x);
 void sstr8_write_u64(sstr8_t *s, uint64_t x);
 void sstr8_write_i8(sstr8_t *s, int8_t x);
 void sstr8_write_i16(sstr8_t *s, int16_t x);
+void sstr8_write_i32(sstr8_t *s, int32_t x);
 
 #endif // _SSTR_H_

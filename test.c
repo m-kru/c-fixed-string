@@ -149,6 +149,32 @@ void test_sstr8(void) {
 	sstr_write(&s, (int16_t)INT16_MIN);
 	assert(sstr_len(s) == 6);
 	sstr_println(s);
+
+	printf("Testing int32_t write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)3);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)-3);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)123456);
+	assert(sstr_len(s) == 6);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)-12345);
+	assert(sstr_len(s) == 6);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)1234567);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int32_t)-123456);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
