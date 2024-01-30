@@ -26,6 +26,7 @@ typedef enum {
 	SSTR_STRING,
 	SSTR_UINT8,
 	SSTR_UINT16,
+	SSTR_UINT32,
 } sstr_arg_type_t;
 
 #if !defined SSTR_NO_SPACE_CB && defined SSTR_DEFAULT_CB
@@ -104,11 +105,13 @@ void sstr8_write_char(sstr8_t *s, char x);
 	sstr8_t*: _Generic((x),                \
 		char*    : sstr8_string_write, \
 		uint8_t  : sstr8_uint8_write,  \
-		uint16_t : sstr8_uint16_write) \
+		uint16_t : sstr8_uint16_write, \
+		uint32_t : sstr8_uint32_write) \
 )(s, x)
 
 void sstr8_string_write(sstr8_t *s, char *x);
 void sstr8_uint8_write(sstr8_t *s, uint8_t x);
 void sstr8_uint16_write(sstr8_t *s, uint16_t x);
+void sstr8_uint32_write(sstr8_t *s, uint32_t x);
 
 #endif // _SSTR_H_

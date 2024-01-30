@@ -27,15 +27,22 @@ void sstr_no_space_cb(
 	case SSTR_UINT8:
 		fprintf(
 			SSTR_CB_STREAM,
-			"%s: no buf space to write uint8 '%u' to \"%s\"\n",
+			"%s: no buf space to write uint8 '%" PRIu8 "' to \"%s\"\n",
 			fn_name, *((uint8_t *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
 	case SSTR_UINT16:
 		fprintf(
 			SSTR_CB_STREAM,
-			"%s: no buf space to write uint16 '%u' to \"%s\"\n",
+			"%s: no buf space to write uint16 '%" PRIu16 "' to \"%s\"\n",
 			fn_name, *((uint16_t *)arg), ((char *)str + sizeof(sstr_t))
+		);
+		break;
+	case SSTR_UINT32:
+		fprintf(
+			SSTR_CB_STREAM,
+			"%s: no buf space to write uint32 '%" PRIu32 "' to \"%s\"\n",
+			fn_name, *((uint32_t *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
 	}
@@ -85,6 +92,19 @@ void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT16, &x);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
+void sstr8_uint32_write(sstr8_t *s, uint32_t x) {
+	char buf[11];
+	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu32, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT32, &x);
 #endif
 		return;
 	}
