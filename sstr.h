@@ -2,6 +2,7 @@
 #define _SSTR_H_
 
 #include <inttypes.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #define SSTR8    0x00
@@ -22,6 +23,7 @@ typedef struct {
 } sstr_t;
 
 typedef enum {
+	SSTR_BOOL,
 	SSTR_CHAR,
 	SSTR_STRING,
 	SSTR_UINT8,
@@ -104,6 +106,7 @@ void sstr8_write_char(sstr8_t *s, char x);
 
 #define sstr_write(s, x) _Generic((s),         \
 	sstr8_t*: _Generic((x),                \
+		bool     : sstr8_bool_write,   \
 		char*    : sstr8_string_write, \
 		uint8_t  : sstr8_uint8_write,  \
 		uint16_t : sstr8_uint16_write, \
@@ -111,6 +114,7 @@ void sstr8_write_char(sstr8_t *s, char x);
 		uint64_t : sstr8_uint64_write) \
 )(s, x)
 
+void sstr8_bool_write(sstr8_t *s, bool x);
 void sstr8_string_write(sstr8_t *s, char *x);
 void sstr8_uint8_write(sstr8_t *s, uint8_t x);
 void sstr8_uint16_write(sstr8_t *s, uint16_t x);

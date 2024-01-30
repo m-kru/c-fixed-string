@@ -10,6 +10,15 @@ void sstr_no_space_cb(
 	const void * arg
 ) {
 	switch (arg_type) {
+	case SSTR_BOOL: {
+		const char *val = (*((bool *)arg)) ? "true" : "false";
+		fprintf(
+			SSTR_CB_STREAM,
+			"%s: no buf space to write bool '%s' to \"%s\"\n",
+			fn_name, val, ((char *)str + sizeof(sstr_t))
+		);
+		break;
+	}
 	case SSTR_CHAR:
 		fprintf(
 			SSTR_CB_STREAM,
@@ -65,6 +74,19 @@ void sstr8_write_char(sstr8_t *s, char x) {
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_CHAR, &x);
 #endif
 	}
+}
+
+void sstr8_bool_write(sstr8_t *s, bool x) {
+	const char *val = (x) ? "true" : "false";
+	const uint8_t size = (x) ? 4 : 5;
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_BOOL, &x);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s),"%s", val);
+	s->_str._len += size;
 }
 
 void sstr8_string_write(sstr8_t *s, char *x) {

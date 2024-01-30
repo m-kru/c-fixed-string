@@ -1,9 +1,12 @@
 #include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "sstr.h"
 
 void test_sstr8(void) {
+	printf("running str8_t tests\n");
+
 	sstr8_init(s, "");
 	assert(sstr_len(s) == 0);
 
@@ -45,11 +48,30 @@ void test_sstr8(void) {
 	sstr_write(&s, u64);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	sstr_reset(&s);
+	assert(sstr_len(s) == 0);
+
+	bool b = true;
+	sstr_write(&s, b);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	sstr_reset(&s);
+	assert(sstr_len(s) == 0);
+
+	b = false;
+	sstr_write(&s, b);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
+	fprintf(stderr, "running str8_t no space tests\n");
 	sstr8_init(s, "12345");
 
+	sstr_write(&s, (bool)0);
+	sstr_write(&s, (bool)1);
 	sstr_write(&s, (uint8_t)100);
 
 	sstr_write_char(&s, '6');
