@@ -43,21 +43,20 @@ void sstr8_bool_write(sstr8_t *s, bool x) {
 }
 
 void sstr8_string_write(sstr8_t *s, char *x) {
-	const uint8_t size = 8 - sstr_len(s);
-	const size_t xlen = strlen(x);
-	if (xlen > size) {
+	const uint8_t size = strlen(x);
+	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, x);
 #endif
 		return;
 	}
-	snprintf(s->_buf + sstr_len(s), size, "%s", x);
-	s->_str._len += xlen;
+	sprintf(s->_buf + sstr_len(s), "%s", x);
+	s->_str._len += size;
 }
 
 void sstr8_u8_write(sstr8_t *s, uint8_t x) {
 	char buf[4];
-	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu8, x);
+	const size_t size = sprintf(buf, "%"PRIu8, x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
@@ -70,7 +69,7 @@ void sstr8_u8_write(sstr8_t *s, uint8_t x) {
 
 void sstr8_u16_write(sstr8_t *s, uint16_t x) {
 	char buf[6];
-	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu16, x);
+	const size_t size = sprintf(buf, "%"PRIu16, x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
@@ -83,7 +82,7 @@ void sstr8_u16_write(sstr8_t *s, uint16_t x) {
 
 void sstr8_u32_write(sstr8_t *s, uint32_t x) {
 	char buf[11];
-	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu32, x);
+	const size_t size = sprintf(buf, "%"PRIu32, x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
@@ -96,7 +95,7 @@ void sstr8_u32_write(sstr8_t *s, uint32_t x) {
 
 void sstr8_u64_write(sstr8_t *s, uint64_t x) {
 	char buf[21];
-	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu64, x);
+	const size_t size = sprintf(buf, "%"PRIu64, x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
@@ -109,7 +108,7 @@ void sstr8_u64_write(sstr8_t *s, uint64_t x) {
 
 void sstr8_i8_write(sstr8_t *s, int8_t x) {
 	char buf[5];
-	const size_t size = snprintf(buf, sizeof(buf), "%"PRIi8, x);
+	const size_t size = sprintf(buf, "%"PRIi8, x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
