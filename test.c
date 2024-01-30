@@ -5,98 +5,154 @@
 #include "sstr.h"
 
 void test_sstr8(void) {
-	printf("running str8_t tests\n");
-
+	printf("\nRunning str8_t tests\n");
 	sstr8_init(s, "");
 	assert(sstr_len(s) == 0);
 
-	char c = 's';
-	sstr_write_char(&s, c);
+	printf("Testing char write\n");
+	sstr_write_char(&s, 'a');
 	assert(sstr_len(s) == 1);
 	sstr_println(s);
+	sstr_write_char(&s, 'b');
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
 
-	char *string = "tring";
+	printf("Testing bool write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (bool)true);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (bool)false);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+
+	printf("Testing string (char *) write\n");
+	sstr_reset(&s);
+	char *string = "string";
 	sstr_write(&s, string);
 	assert(sstr_len(s) == 6);
 	sstr_println(s);
 
-	uint8_t u8 = 0;
-	sstr_write(&s, u8);
-	assert(sstr_len(s) == 7);
+	printf("Testing uint8_t write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (uint8_t)0);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint8_t)10);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint8_t)255);
+	assert(sstr_len(s) == 3);
 	sstr_println(s);
 
+	printf("Testing uint16_t write\n");
 	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	uint16_t u16 = 1000;
-	sstr_write(&s, u16);
+	sstr_write(&s, (uint16_t)7);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint16_t)12);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint16_t)300);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint16_t)4987);
 	assert(sstr_len(s) == 4);
 	sstr_println(s);
-
 	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	uint32_t u32 = 1234567;
-	sstr_write(&s, u32);
-	assert(sstr_len(s) == 7);
-	sstr_println(s);
-
-	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	uint64_t u64 = 9999999;
-	sstr_write(&s, u64);
-	assert(sstr_len(s) == 7);
-	sstr_println(s);
-
-	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	bool b = true;
-	sstr_write(&s, b);
-	assert(sstr_len(s) == 4);
-	sstr_println(s);
-
-	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	b = false;
-	sstr_write(&s, b);
+	sstr_write(&s, (uint16_t)65535);
 	assert(sstr_len(s) == 5);
 	sstr_println(s);
 
+	printf("Testing uint32_t write\n");
 	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	int8_t i8 = -111;
-	sstr_write(&s, i8);
+	sstr_write(&s, (uint32_t)1);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint32_t)4321);
 	assert(sstr_len(s) == 4);
 	sstr_println(s);
-
-	i8 = 113;
-	sstr_write(&s, i8);
+	sstr_reset(&s);
+	sstr_write(&s, (uint32_t)1234567);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
 
+	printf("Testing uint64_t write\n");
 	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
+	sstr_write(&s, (uint64_t)1);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint64_t)12345);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (uint64_t)1234567);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 
-	int16_t i16 = -31456;
-	sstr_write(&s, i16);
+	printf("Testing int8_t write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)1);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)-1);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)20);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)-20);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)INT8_MAX);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int8_t)INT8_MIN);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	printf("Testing int16_t write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)2);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)-2);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)400);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)-400);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)INT16_MAX);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int16_t)INT16_MIN);
 	assert(sstr_len(s) == 6);
-	sstr_println(s);
-
-	sstr_reset(&s);
-	assert(sstr_len(s) == 0);
-
-	i16 = 32000;
-	sstr_write(&s, i16);
-	assert(sstr_len(s) == 5);
 	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
-	fprintf(stderr, "running str8_t no space tests\n");
+	fprintf(stderr, "\nRunning str8_t no space tests\n");
 	sstr8_init(s, "12345");
 
 	sstr_write(&s, (bool)0);
