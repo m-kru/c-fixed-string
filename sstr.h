@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// https://github.com/m-kru/c-sstr
+// Copyright (c) 2024 Michał Kruszewski
+
 #ifndef _SSTR_H_
 #define _SSTR_H_
 
@@ -43,9 +47,9 @@ void sstr_no_space_cb(
 /*
  * sstr_reset resets static string to be empty.
  */
-#define sstr_reset(s) do { \
-	(s)->_buf[0] = 0;    \
-	(s)->_str._len = 0;  \
+#define sstr_reset(s) do {  \
+	(s)->_buf[0] = 0;   \
+	(s)->_str._len = 0; \
 } while(0)
 
 #define sstr_print(str) do {            \

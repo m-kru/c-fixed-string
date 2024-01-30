@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+// https://github.com/m-kru/c-sstr
+// Copyright (c) 2024 Michał Kruszewski
+
 #include <string.h>
 
 #include "sstr.h"
