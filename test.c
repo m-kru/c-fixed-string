@@ -175,6 +175,32 @@ void test_sstr8(void) {
 	sstr_write(&s, (int32_t)-123456);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	printf("Testing int64_t write\n");
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)9);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)-9);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)1236);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)-1234);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)7654321);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write(&s, (int64_t)-123456);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
