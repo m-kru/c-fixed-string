@@ -55,7 +55,7 @@ void sstr8_string_write(sstr8_t *s, char *x) {
 	s->_str._len += xlen;
 }
 
-void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
+void sstr8_u8_write(sstr8_t *s, uint8_t x) {
 	char buf[4];
 	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu8, x);
 	if (size >= 8 - sstr_len(s)) {
@@ -68,7 +68,7 @@ void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
 	s->_str._len += size;
 }
 
-void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
+void sstr8_u16_write(sstr8_t *s, uint16_t x) {
 	char buf[6];
 	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu16, x);
 	if (size >= 8 - sstr_len(s)) {
@@ -81,7 +81,7 @@ void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
 	s->_str._len += size;
 }
 
-void sstr8_uint32_write(sstr8_t *s, uint32_t x) {
+void sstr8_u32_write(sstr8_t *s, uint32_t x) {
 	char buf[11];
 	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu32, x);
 	if (size >= 8 - sstr_len(s)) {
@@ -94,7 +94,7 @@ void sstr8_uint32_write(sstr8_t *s, uint32_t x) {
 	s->_str._len += size;
 }
 
-void sstr8_uint64_write(sstr8_t *s, uint64_t x) {
+void sstr8_u64_write(sstr8_t *s, uint64_t x) {
 	char buf[21];
 	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu64, x);
 	if (size >= 8 - sstr_len(s)) {

@@ -97,17 +97,17 @@ void sstr8_write_char(sstr8_t *s, char x);
 	sstr8_t*: _Generic((x),                \
 		bool     : sstr8_bool_write,   \
 		char*    : sstr8_string_write, \
-		uint8_t  : sstr8_uint8_write,  \
-		uint16_t : sstr8_uint16_write, \
-		uint32_t : sstr8_uint32_write, \
-		uint64_t : sstr8_uint64_write) \
+		uint8_t  : sstr8_u8_write,     \
+		uint16_t : sstr8_u16_write,    \
+		uint32_t : sstr8_u32_write,    \
+		uint64_t : sstr8_u64_write)    \
 )(s, x)
 
 void sstr8_bool_write(sstr8_t *s, bool x);
 void sstr8_string_write(sstr8_t *s, char *x);
-void sstr8_uint8_write(sstr8_t *s, uint8_t x);
-void sstr8_uint16_write(sstr8_t *s, uint16_t x);
-void sstr8_uint32_write(sstr8_t *s, uint32_t x);
-void sstr8_uint64_write(sstr8_t *s, uint64_t x);
+void sstr8_u8_write(sstr8_t *s, uint8_t x);
+void sstr8_u16_write(sstr8_t *s, uint16_t x);
+void sstr8_u32_write(sstr8_t *s, uint32_t x);
+void sstr8_u64_write(sstr8_t *s, uint64_t x);
 
 #endif // _SSTR_H_
