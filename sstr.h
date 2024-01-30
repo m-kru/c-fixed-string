@@ -22,16 +22,6 @@ typedef struct {
 	uint8_t  _type;
 } sstr_t;
 
-typedef enum {
-	SSTR_BOOL,
-	SSTR_CHAR,
-	SSTR_STRING,
-	SSTR_UINT8,
-	SSTR_UINT16,
-	SSTR_UINT32,
-	SSTR_UINT64,
-} sstr_arg_type_t;
-
 #if !defined SSTR_NO_SPACE_CB && defined SSTR_DEFAULT_CB
 	#error "SSTR_DEFAULT_CB requires SSTR_NO_SPACE_CB to be defined as well"
 #endif
@@ -46,8 +36,7 @@ typedef enum {
 void sstr_no_space_cb(
 	const char * fn_name,
 	const sstr_t * str,
-	const sstr_arg_type_t arg_type,
-	const void * arg
+	const char * arg
 );
 #endif
 
