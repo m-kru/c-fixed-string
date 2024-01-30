@@ -118,3 +118,16 @@ void sstr8_i8_write(sstr8_t *s, int8_t x) {
 	sprintf(s->_buf + sstr_len(s), "%s", buf);
 	s->_str._len += size;
 }
+
+void sstr8_i16_write(sstr8_t *s, int16_t x) {
+	char buf[7];
+	const size_t size = sprintf(buf, "%"PRIi16, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
