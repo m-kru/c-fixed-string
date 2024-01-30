@@ -67,33 +67,27 @@ void sstr8_string_write(sstr8_t *s, char *x) {
 }
 
 void sstr8_uint8_write(sstr8_t *s, uint8_t x) {
-	const uint8_t size = 8 - sstr_len(s);
-	if ((0 <= x && x < 10 && size < 2) ||
-	    (10 <= x && x < 100 && size < 3) ||
-	    (100 <= x && x <= UINT8_MAX && size < 4)) {
+	char buf[4];
+	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu8, x);
+	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT8, &x);
 #endif
 		return;
 	}
-	snprintf(s->_buf + sstr_len(s), size, "%"PRIu8, x);
-	while (s->_buf[sstr_len(s)] != 0)
-		s->_str._len++;
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
 }
 
 void sstr8_uint16_write(sstr8_t *s, uint16_t x) {
-	const uint8_t size = 8 - sstr_len(s);
-	if ((0 <= x && x < 10 && size < 2) ||
-	    (10 <= x && x < 100 && size < 3) ||
-	    (100 <= x && x < 100&& size < 4) ||
-	    (1000 <= x && x < 10000 && size < 5) ||
-	    (10000 <= x && x <= UINT16_MAX && size < 6)) {
+	char buf[6];
+	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu16, x);
+	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT16, &x);
 #endif
 		return;
 	}
-	snprintf(s->_buf + sstr_len(s), size, "%"PRIu16, x);
-	while (s->_buf[sstr_len(s)] != 0)
-		s->_str._len++;
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
 }
