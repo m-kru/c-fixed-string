@@ -37,6 +37,14 @@ void test_sstr8(void) {
 	sstr_write(&s, u32);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	sstr_reset(&s);
+	assert(sstr_len(s) == 0);
+
+	uint64_t u64 = 9999999;
+	sstr_write(&s, u64);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -57,6 +65,7 @@ void test_sstr8_no_space(void) {
 	sstr_reset(&s);
 	assert(sstr_len(s) == 0);
 	sstr_write(&s, (uint32_t)10000000);
+	sstr_write(&s, (uint64_t)99999999);
 }
 
 int main(int argc, char *argv[]) {

@@ -45,6 +45,13 @@ void sstr_no_space_cb(
 			fn_name, *((uint32_t *)arg), ((char *)str + sizeof(sstr_t))
 		);
 		break;
+	case SSTR_UINT64:
+		fprintf(
+			SSTR_CB_STREAM,
+			"%s: no buf space to write uint64 '%" PRIu64 "' to \"%s\"\n",
+			fn_name, *((uint64_t *)arg), ((char *)str + sizeof(sstr_t))
+		);
+		break;
 	}
 }
 #endif
@@ -105,6 +112,19 @@ void sstr8_uint32_write(sstr8_t *s, uint32_t x) {
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT32, &x);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
+void sstr8_uint64_write(sstr8_t *s, uint64_t x) {
+	char buf[21];
+	const size_t size = snprintf(buf, sizeof(buf), "%"PRIu64, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, SSTR_UINT64, &x);
 #endif
 		return;
 	}
