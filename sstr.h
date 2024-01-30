@@ -95,23 +95,23 @@ void sstr8_write_char(sstr8_t *s, char x);
 
 #define sstr_write(s, x) _Generic((s),         \
 	sstr8_t*: _Generic((x),                \
-		bool     : sstr8_bool_write,   \
-		char*    : sstr8_string_write, \
-		uint8_t  : sstr8_u8_write,     \
-		uint16_t : sstr8_u16_write,    \
-		uint32_t : sstr8_u32_write,    \
-		uint64_t : sstr8_u64_write,    \
-		int8_t   : sstr8_i8_write,     \
-		int16_t  : sstr8_i16_write)    \
+		bool     : sstr8_write_bool,   \
+		char*    : sstr8_write_string, \
+		uint8_t  : sstr8_write_u8,     \
+		uint16_t : sstr8_write_u16,    \
+		uint32_t : sstr8_write_u32,    \
+		uint64_t : sstr8_write_u64,    \
+		int8_t   : sstr8_write_i8,     \
+		int16_t  : sstr8_write_i16)    \
 )(s, x)
 
-void sstr8_bool_write(sstr8_t *s, bool x);
-void sstr8_string_write(sstr8_t *s, char *x);
-void sstr8_u8_write(sstr8_t *s, uint8_t x);
-void sstr8_u16_write(sstr8_t *s, uint16_t x);
-void sstr8_u32_write(sstr8_t *s, uint32_t x);
-void sstr8_u64_write(sstr8_t *s, uint64_t x);
-void sstr8_i8_write(sstr8_t *s, int8_t x);
-void sstr8_i16_write(sstr8_t *s, int16_t x);
+void sstr8_write_bool(sstr8_t *s, bool x);
+void sstr8_write_string(sstr8_t *s, char *x);
+void sstr8_write_u8(sstr8_t *s, uint8_t x);
+void sstr8_write_u16(sstr8_t *s, uint16_t x);
+void sstr8_write_u32(sstr8_t *s, uint32_t x);
+void sstr8_write_u64(sstr8_t *s, uint64_t x);
+void sstr8_write_i8(sstr8_t *s, int8_t x);
+void sstr8_write_i16(sstr8_t *s, int16_t x);
 
 #endif // _SSTR_H_
