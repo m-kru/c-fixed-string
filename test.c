@@ -64,6 +64,19 @@ void test_sstr8(void) {
 	sstr_write(&s, b);
 	assert(sstr_len(s) == 5);
 	sstr_println(s);
+
+	sstr_reset(&s);
+	assert(sstr_len(s) == 0);
+
+	int8_t i8 = -111;
+	sstr_write(&s, i8);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	i8 = 113;
+	sstr_write(&s, i8);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -73,10 +86,13 @@ void test_sstr8_no_space(void) {
 	sstr_write(&s, (bool)0);
 	sstr_write(&s, (bool)1);
 	sstr_write(&s, (uint8_t)100);
+	sstr_write(&s, (int8_t)(-100));
+	sstr_write(&s, (int8_t)(-99));
 
 	sstr_write_char(&s, '6');
 	sstr_write(&s, (uint8_t)100);
 	sstr_write(&s, (uint8_t)10);
+	sstr_write(&s, (int8_t)(-7));
 
 	sstr_write_char(&s, '7');
 	sstr_write(&s, (uint8_t)100);
