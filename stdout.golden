@@ -99,3 +99,23 @@ ab
 Testing uint64_t hex write
 ab
 9abcdef
+
+Testing uint8_t xhex write
+0xf
+0x0f
+0xee
+0xee
+
+Testing uint16_t xhex write
+0xdef
+0x000f
+0x00ee
+0xee
+
+Testing uint32_t xhex write
+0xbeef
+0x1
+
+Testing uint64_t xhex write
+0xdee
+0x11

@@ -239,3 +239,55 @@ void sstr8_write_hex_u64(sstr8_t *s, uint64_t x, bool fw) {
 	sprintf(s->_buf + sstr_len(s), "%s", buf);
 	s->_str._len += size;
 }
+
+void sstr8_write_xhex_u8(sstr8_t *s, uint8_t x, bool fw) {
+	char buf[5];
+	const size_t size = sprintf(buf, (fw) ? "0x%02"PRIx8 : "0x%"PRIx8, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
+void sstr8_write_xhex_u16(sstr8_t *s, uint16_t x, bool fw) {
+	char buf[7];
+	const size_t size = sprintf(buf, (fw) ? "0x%04"PRIx16 : "0x%"PRIx16, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
+void sstr8_write_xhex_u32(sstr8_t *s, uint32_t x, bool fw) {
+	char buf[11];
+	const size_t size = sprintf(buf, (fw) ? "0x%08"PRIx32 : "0x%"PRIx32, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
+void sstr8_write_xhex_u64(sstr8_t *s, uint64_t x, bool fw) {
+	char buf[19];
+	const size_t size = sprintf(buf, (fw) ? "0x%016"PRIx64 : "0x%"PRIx64, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}

@@ -298,6 +298,62 @@ void test_sstr8(void) {
 	sstr_write_hex(&s, (uint64_t)0x9abcdef, false);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	printf("\nTesting uint8_t xhex write\n");
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint8_t)0xf, false);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint8_t)0xf, true);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint8_t)0xee, true);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint8_t)0xee, false);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	printf("\nTesting uint16_t xhex write\n");
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint16_t)0xdef, false);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint16_t)0xf, true);
+	assert(sstr_len(s) == 6);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint16_t)0xee, true);
+	assert(sstr_len(s) == 6);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint16_t)0xee, false);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	printf("\nTesting uint32_t xhex write\n");
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint32_t)0xbeef, false);
+	assert(sstr_len(s) == 6);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint32_t)0x1, false);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+
+	printf("\nTesting uint64_t xhex write\n");
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint64_t)0xdee, false);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_xhex(&s, (uint64_t)0x11, false);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
