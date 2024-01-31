@@ -201,6 +201,20 @@ void test_sstr8(void) {
 	sstr_write(&s, (int64_t)-123456);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	printf("Testing float write\n");
+	sstr_reset(&s);
+	sstr_write_float(&s, (float)12.9876, 2);
+	assert(sstr_len(s) == 5);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_float(&s, (float)23.7, 1);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_float(&s, (float)(-141.11), 2);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -214,7 +228,7 @@ void test_sstr8_no_space(void) {
 	sstr_write(&s, (int8_t)(-99));
 	sstr_write(&s, (int16_t)(-1000));
 	sstr_write(&s, (int16_t)(32000));
-	sstr_write(&s, (float)(123.486790));
+	sstr_write_float(&s, (float)(123.486790), 10);
 
 	sstr_write_char(&s, '6');
 	sstr_write(&s, (uint8_t)100);

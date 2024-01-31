@@ -97,6 +97,15 @@ uint8_t _sstr_ptr_len(sstr8_t *s) {
 
 void sstr8_write_char(sstr8_t *s, char x);
 
+/*
+ * p is the precision specifier. 
+ */
+#define sstr_write_float(s, x, p) _Generic((s), \
+	sstr8_t*: sstr8_write_float             \
+)(s, x, p)
+
+void sstr8_write_float(sstr8_t *s, float x, uint8_t p);
+
 #define sstr_write(s, x) _Generic((s),         \
 	sstr8_t*: _Generic((x),                \
 		bool     : sstr8_write_bool,   \
@@ -108,8 +117,7 @@ void sstr8_write_char(sstr8_t *s, char x);
 		int8_t   : sstr8_write_i8,     \
 		int16_t  : sstr8_write_i16,    \
 		int32_t  : sstr8_write_i32,    \
-		int64_t  : sstr8_write_i64,    \
-		float    : sstr8_write_float)  \
+		int64_t  : sstr8_write_i64)    \
 )(s, x)
 
 void sstr8_write_bool(sstr8_t *s, bool x);
@@ -122,6 +130,5 @@ void sstr8_write_i8(sstr8_t *s, int8_t x);
 void sstr8_write_i16(sstr8_t *s, int16_t x);
 void sstr8_write_i32(sstr8_t *s, int32_t x);
 void sstr8_write_i64(sstr8_t *s, int64_t x);
-void sstr8_write_float(sstr8_t *s, float x);
 
 #endif // _SSTR_H_

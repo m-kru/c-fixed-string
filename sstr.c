@@ -33,6 +33,19 @@ void sstr8_write_char(sstr8_t *s, char x) {
 	}
 }
 
+void sstr8_write_float(sstr8_t *s, float x, uint8_t p) {
+	char buf[32];
+	const size_t size = snprintf(buf, sizeof(buf), "%.*f", p, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
 void sstr8_write_bool(sstr8_t *s, bool x) {
 	const char *buf = (x) ? "true" : "false";
 	const uint8_t size = (x) ? 4 : 5;
@@ -152,19 +165,6 @@ void sstr8_write_i32(sstr8_t *s, int32_t x) {
 void sstr8_write_i64(sstr8_t *s, int64_t x) {
 	char buf[22];
 	const size_t size = sprintf(buf, "%"PRIi64, x);
-	if (size >= 8 - sstr_len(s)) {
-#ifdef SSTR_NO_SPACE_CB
-		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
-#endif
-		return;
-	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
-	s->_str._len += size;
-}
-
-void sstr8_write_float(sstr8_t *s, float x) {
-	char buf[32];
-	const size_t size = snprintf(buf, sizeof(buf), "%f", x);
 	if (size >= 8 - sstr_len(s)) {
 #ifdef SSTR_NO_SPACE_CB
 		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
