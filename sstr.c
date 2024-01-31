@@ -42,7 +42,7 @@ void sstr8_write_float(sstr8_t *s, float x, uint8_t p) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -55,7 +55,7 @@ void sstr8_write_double(sstr8_t *s, double x, uint8_t p) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -68,7 +68,7 @@ void sstr8_write_bool(sstr8_t *s, bool x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s),"%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -80,7 +80,7 @@ void sstr8_write_string(sstr8_t *s, char *x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", x);
+	memcpy(s->_buf + sstr_len(s), x, size + 1);
 	s->_str._len += size;
 }
 
@@ -93,7 +93,7 @@ void sstr8_write_u8(sstr8_t *s, uint8_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -106,7 +106,7 @@ void sstr8_write_u16(sstr8_t *s, uint16_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -119,7 +119,7 @@ void sstr8_write_u32(sstr8_t *s, uint32_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -132,7 +132,7 @@ void sstr8_write_u64(sstr8_t *s, uint64_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -145,7 +145,7 @@ void sstr8_write_i8(sstr8_t *s, int8_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -158,7 +158,7 @@ void sstr8_write_i16(sstr8_t *s, int16_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -171,7 +171,7 @@ void sstr8_write_i32(sstr8_t *s, int32_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -184,7 +184,7 @@ void sstr8_write_i64(sstr8_t *s, int64_t x) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -197,7 +197,7 @@ void sstr8_write_hex_u8(sstr8_t *s, uint8_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -210,7 +210,7 @@ void sstr8_write_hex_u16(sstr8_t *s, uint16_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -223,7 +223,7 @@ void sstr8_write_hex_u32(sstr8_t *s, uint32_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -236,7 +236,7 @@ void sstr8_write_hex_u64(sstr8_t *s, uint64_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -249,7 +249,7 @@ void sstr8_write_xhex_u8(sstr8_t *s, uint8_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -262,7 +262,7 @@ void sstr8_write_xhex_u16(sstr8_t *s, uint16_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -275,7 +275,7 @@ void sstr8_write_xhex_u32(sstr8_t *s, uint32_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
 
@@ -288,6 +288,6 @@ void sstr8_write_xhex_u64(sstr8_t *s, uint64_t x, bool fw) {
 #endif
 		return;
 	}
-	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	memcpy(s->_buf + sstr_len(s), buf, size + 1);
 	s->_str._len += size;
 }
