@@ -146,10 +146,12 @@ void sstr8_write_i64(sstr8_t *s, int64_t x);
 #define sstr_write_hex(s, x, fw) _Generic((s),  \
 	sstr8_t*: _Generic((x),                 \
 		uint8_t  : sstr8_write_hex_u8,  \
-		uint16_t : sstr8_write_hex_u16) \
+		uint16_t : sstr8_write_hex_u16, \
+		uint32_t : sstr8_write_hex_u32) \
 )(s, x, fw)
 
 void sstr8_write_hex_u8(sstr8_t *s, uint8_t x, bool fw);
 void sstr8_write_hex_u16(sstr8_t *s, uint16_t x, bool fw);
+void sstr8_write_hex_u32(sstr8_t *s, uint32_t x, bool fw);
 
 #endif // _SSTR_H_
