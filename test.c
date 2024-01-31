@@ -229,6 +229,24 @@ void test_sstr8(void) {
 	sstr_write_float(&s, (double)(-294.11), 2);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	printf("Testing uint8_t hex write\n");
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint8_t)0xf, false);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint8_t)0xf, true);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint8_t)0xee, true);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint8_t)0xee, false);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -249,12 +267,14 @@ void test_sstr8_no_space(void) {
 	sstr_write(&s, (uint8_t)100);
 	sstr_write(&s, (uint8_t)10);
 	sstr_write(&s, (int8_t)(-7));
+	sstr_write_hex(&s, (uint8_t)0xee, true);
 
 	sstr_write_char(&s, '7');
 	sstr_write(&s, (uint8_t)100);
 	sstr_write(&s, (uint8_t)10);
 	sstr_write(&s, (uint8_t)1);
 	sstr_write_char(&s, 'A');
+	sstr_write_hex(&s, (uint8_t)0x0, false);
 
 	sstr_reset(&s);
 	assert(sstr_len(s) == 0);

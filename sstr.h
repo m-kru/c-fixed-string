@@ -140,4 +140,14 @@ void sstr8_write_i16(sstr8_t *s, int16_t x);
 void sstr8_write_i32(sstr8_t *s, int32_t x);
 void sstr8_write_i64(sstr8_t *s, int64_t x);
 
+/*
+ * fw controls whether value shall have fixed width.
+ */
+#define sstr_write_hex(s, x, fw) _Generic((s), \
+	sstr8_t*: _Generic((x),                \
+		uint8_t  : sstr8_write_hex_u8) \
+)(s, x, fw)
+
+void sstr8_write_hex_u8(sstr8_t *s, uint8_t x, bool fw);
+
 #endif // _SSTR_H_
