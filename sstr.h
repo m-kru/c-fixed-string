@@ -151,12 +151,9 @@ void sstr8_write_i64(sstr8_t *s, int64_t x);
 		uint64_t : sstr8_write_hex_u64) \
 )(s, x, fw)
 
-#define write_hex_declarations(CAP) \
-	void sstr ## CAP ##_write_hex_u8 (sstr ## CAP ## _t *s, uint8_t x, bool fw);  \
-	void sstr ## CAP ##_write_hex_u16(sstr ## CAP ## _t *s, uint16_t x, bool fw); \
-	void sstr ## CAP ##_write_hex_u32(sstr ## CAP ## _t *s, uint32_t x, bool fw); \
-	void sstr ## CAP ##_write_hex_u64(sstr ## CAP ## _t *s, uint64_t x, bool fw)
-
-write_hex_declarations(8);
+void sstr8_write_hex_u8(sstr8_t *s, uint8_t x, bool fw);
+void sstr8_write_hex_u16(sstr8_t *s, uint16_t x, bool fw);
+void sstr8_write_hex_u32(sstr8_t *s, uint32_t x, bool fw);
+void sstr8_write_hex_u64(sstr8_t *s, uint64_t x, bool fw);
 
 #endif // _SSTR_H_
