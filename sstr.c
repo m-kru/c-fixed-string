@@ -161,3 +161,16 @@ void sstr8_write_i64(sstr8_t *s, int64_t x) {
 	sprintf(s->_buf + sstr_len(s), "%s", buf);
 	s->_str._len += size;
 }
+
+void sstr8_write_float(sstr8_t *s, float x) {
+	char buf[32];
+	const size_t size = snprintf(buf, sizeof(buf), "%f", x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}

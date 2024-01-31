@@ -214,6 +214,7 @@ void test_sstr8_no_space(void) {
 	sstr_write(&s, (int8_t)(-99));
 	sstr_write(&s, (int16_t)(-1000));
 	sstr_write(&s, (int16_t)(32000));
+	sstr_write(&s, (float)(123.486790));
 
 	sstr_write_char(&s, '6');
 	sstr_write(&s, (uint8_t)100);
