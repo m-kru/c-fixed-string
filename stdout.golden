@@ -119,3 +119,23 @@ Testing uint32_t xhex write
 Testing uint64_t xhex write
 0xdee
 0x11
+
+Testing uint8_t HEX write
+F
+0F
+EE
+EE
+
+Testing uint16_t HEX write
+BCD
+0BCD
+123D
+ABCD
+
+Testing uint32_t HEX write
+AB
+9ABCDEF
+
+Testing uint64_t HEX write
+AB
+9ABCDEF

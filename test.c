@@ -354,6 +354,62 @@ void test_sstr8(void) {
 	sstr_write_xhex(&s, (uint64_t)0x11, false);
 	assert(sstr_len(s) == 4);
 	sstr_println(s);
+
+	printf("\nTesting uint8_t HEX write\n");
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint8_t)0xf, false);
+	assert(sstr_len(s) == 1);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint8_t)0xf, true);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint8_t)0xee, true);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint8_t)0xee, false);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+
+	printf("\nTesting uint16_t HEX write\n");
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint16_t)0xbcd, false);
+	assert(sstr_len(s) == 3);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint16_t)0xbcd, true);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint16_t)0x123D, true);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint16_t)0xabcd, false);
+	assert(sstr_len(s) == 4);
+	sstr_println(s);
+
+	printf("\nTesting uint32_t HEX write\n");
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint32_t)0xab, false);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint32_t)0x9abcdef, false);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
+
+	printf("\nTesting uint64_t HEX write\n");
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint64_t)0xab, false);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_HEX(&s, (uint64_t)0x9abcdef, false);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -379,6 +435,14 @@ void test_sstr8_no_space(void) {
 	sstr_write_hex(&s, (uint16_t)0x0, true);
 	sstr_write_hex(&s, (uint32_t)0x0, true);
 	sstr_write_hex(&s, (uint64_t)0x0, true);
+	sstr_write_xhex(&s, (uint8_t)0x0, true);
+	sstr_write_xhex(&s, (uint16_t)0x0, true);
+	sstr_write_xhex(&s, (uint32_t)0x0, true);
+	sstr_write_xhex(&s, (uint64_t)0x0, true);
+	sstr_write_HEX(&s, (uint8_t)0x0, true);
+	sstr_write_HEX(&s, (uint16_t)0x0, true);
+	sstr_write_HEX(&s, (uint32_t)0x0, true);
+	sstr_write_HEX(&s, (uint64_t)0x0, true);
 }
 
 int main(int argc, char *argv[]) {
