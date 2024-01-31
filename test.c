@@ -275,6 +275,16 @@ void test_sstr8(void) {
 	sstr_write_hex(&s, (uint32_t)0x9abcdef, false);
 	assert(sstr_len(s) == 7);
 	sstr_println(s);
+
+	printf("Testing uint64_t hex write\n");
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint64_t)0xab, false);
+	assert(sstr_len(s) == 2);
+	sstr_println(s);
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint64_t)0x9abcdef, false);
+	assert(sstr_len(s) == 7);
+	sstr_println(s);
 }
 
 void test_sstr8_no_space(void) {
@@ -313,6 +323,10 @@ void test_sstr8_no_space(void) {
 	sstr_reset(&s);
 	sstr_write_hex(&s, (uint32_t)0x0, true);
 	sstr_write_hex(&s, (uint32_t)0xdeadbeef, false);
+
+	sstr_reset(&s);
+	sstr_write_hex(&s, (uint64_t)0x0, true);
+	sstr_write_hex(&s, (uint64_t)0xdeadbeef, false);
 }
 
 int main(int argc, char *argv[]) {
