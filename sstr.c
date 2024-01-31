@@ -46,6 +46,19 @@ void sstr8_write_float(sstr8_t *s, float x, uint8_t p) {
 	s->_str._len += size;
 }
 
+void sstr8_write_double(sstr8_t *s, double x, uint8_t p) {
+	char buf[64];
+	const size_t size = snprintf(buf, sizeof(buf), "%.*lf", p, x);
+	if (size >= 8 - sstr_len(s)) {
+#ifdef SSTR_NO_SPACE_CB
+		sstr_no_space_cb(__func__, (sstr_t *)s, buf);
+#endif
+		return;
+	}
+	sprintf(s->_buf + sstr_len(s), "%s", buf);
+	s->_str._len += size;
+}
+
 void sstr8_write_bool(sstr8_t *s, bool x) {
 	const char *buf = (x) ? "true" : "false";
 	const uint8_t size = (x) ? 4 : 5;

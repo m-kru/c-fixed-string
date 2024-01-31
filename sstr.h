@@ -106,6 +106,15 @@ void sstr8_write_char(sstr8_t *s, char x);
 
 void sstr8_write_float(sstr8_t *s, float x, uint8_t p);
 
+/*
+ * p is the precision specifier. 
+ */
+#define sstr_write_double(s, x, p) _Generic((s), \
+	sstr8_t*: sstr8_write_double             \
+)(s, x, p)
+
+void sstr8_write_double(sstr8_t *s, double x, uint8_t p);
+
 #define sstr_write(s, x) _Generic((s),         \
 	sstr8_t*: _Generic((x),                \
 		bool     : sstr8_write_bool,   \
