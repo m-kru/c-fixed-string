@@ -145,28 +145,28 @@ uint8_t _sstr_ptr_len(sstr8_t *s) {
 		uint64_t : sstr8_write_xhex_u64) \
 )(s, x, fw)
 
-#define _sstr_function_declarations(CAP) \
-void sstr ## CAP ## _write_char     (sstr ## CAP ##_t *s, char     x);            \
-void sstr ## CAP ## _write_bool     (sstr ## CAP ##_t *s, bool     x);            \
-void sstr ## CAP ## _write_string   (sstr ## CAP ##_t *s, char    *x);            \
-void sstr ## CAP ## _write_u8       (sstr ## CAP ##_t *s, uint8_t  x);            \
-void sstr ## CAP ## _write_u16      (sstr ## CAP ##_t *s, uint16_t x);            \
-void sstr ## CAP ## _write_u32      (sstr ## CAP ##_t *s, uint32_t x);            \
-void sstr ## CAP ## _write_u64      (sstr ## CAP ##_t *s, uint64_t x);            \
-void sstr ## CAP ## _write_i8       (sstr ## CAP ##_t *s, int8_t   x);            \
-void sstr ## CAP ## _write_i16      (sstr ## CAP ##_t *s, int16_t  x);            \
-void sstr ## CAP ## _write_i32      (sstr ## CAP ##_t *s, int32_t  x);            \
-void sstr ## CAP ## _write_i64      (sstr ## CAP ##_t *s, int64_t  x);            \
-void sstr ## CAP ## _write_float    (sstr ## CAP ##_t *s, float    x, uint8_t p); \
-void sstr ## CAP ## _write_double   (sstr ## CAP ##_t *s, double   x, uint8_t p); \
-void sstr ## CAP ## _write_hex_u8   (sstr ## CAP ##_t *s, uint8_t  x, bool fw);   \
-void sstr ## CAP ## _write_hex_u16  (sstr ## CAP ##_t *s, uint16_t x, bool fw);   \
-void sstr ## CAP ## _write_hex_u32  (sstr ## CAP ##_t *s, uint32_t x, bool fw);   \
-void sstr ## CAP ## _write_hex_u64  (sstr ## CAP ##_t *s, uint64_t x, bool fw);   \
-void sstr ## CAP ## _write_xhex_u8  (sstr ## CAP ##_t *s, uint8_t  x, bool fw);   \
-void sstr ## CAP ## _write_xhex_u16 (sstr ## CAP ##_t *s, uint16_t x, bool fw);   \
-void sstr ## CAP ## _write_xhex_u32 (sstr ## CAP ##_t *s, uint32_t x, bool fw);   \
-void sstr ## CAP ## _write_xhex_u64 (sstr ## CAP ##_t *s, uint64_t x, bool fw)
+#define _sstr_function_declarations(N) \
+void sstr ## N ## _write_char     (sstr ## N ##_t *s, char     x);            \
+void sstr ## N ## _write_bool     (sstr ## N ##_t *s, bool     x);            \
+void sstr ## N ## _write_string   (sstr ## N ##_t *s, char    *x);            \
+void sstr ## N ## _write_u8       (sstr ## N ##_t *s, uint8_t  x);            \
+void sstr ## N ## _write_u16      (sstr ## N ##_t *s, uint16_t x);            \
+void sstr ## N ## _write_u32      (sstr ## N ##_t *s, uint32_t x);            \
+void sstr ## N ## _write_u64      (sstr ## N ##_t *s, uint64_t x);            \
+void sstr ## N ## _write_i8       (sstr ## N ##_t *s, int8_t   x);            \
+void sstr ## N ## _write_i16      (sstr ## N ##_t *s, int16_t  x);            \
+void sstr ## N ## _write_i32      (sstr ## N ##_t *s, int32_t  x);            \
+void sstr ## N ## _write_i64      (sstr ## N ##_t *s, int64_t  x);            \
+void sstr ## N ## _write_float    (sstr ## N ##_t *s, float    x, uint8_t p); \
+void sstr ## N ## _write_double   (sstr ## N ##_t *s, double   x, uint8_t p); \
+void sstr ## N ## _write_hex_u8   (sstr ## N ##_t *s, uint8_t  x, bool fw);   \
+void sstr ## N ## _write_hex_u16  (sstr ## N ##_t *s, uint16_t x, bool fw);   \
+void sstr ## N ## _write_hex_u32  (sstr ## N ##_t *s, uint32_t x, bool fw);   \
+void sstr ## N ## _write_hex_u64  (sstr ## N ##_t *s, uint64_t x, bool fw);   \
+void sstr ## N ## _write_xhex_u8  (sstr ## N ##_t *s, uint8_t  x, bool fw);   \
+void sstr ## N ## _write_xhex_u16 (sstr ## N ##_t *s, uint16_t x, bool fw);   \
+void sstr ## N ## _write_xhex_u32 (sstr ## N ##_t *s, uint32_t x, bool fw);   \
+void sstr ## N ## _write_xhex_u64 (sstr ## N ##_t *s, uint64_t x, bool fw)
 
 _sstr_function_declarations(8);
 
