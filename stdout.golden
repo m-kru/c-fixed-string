@@ -1,0 +1,101 @@
+----------------------------------------------
+Running str8_t tests
+----------------------------------------------
+
+Testing char write
+a
+ab
+ab0
+
+Testing bool write:
+true
+false
+
+Testing string (char *) write
+string
+
+Testing uint8_t write
+0
+10
+255
+
+Testing uint16_t write
+7
+12
+300
+4987
+65535
+
+Testing uint32_t write
+1
+4321
+1234567
+
+Testing uint64_t write
+1
+12345
+1234567
+
+Testing int8_t write
+1
+-1
+20
+-20
+127
+-128
+
+Testing int16_t write
+2
+-2
+400
+-400
+32767
+-32768
+
+Testing int32_t write
+3
+-3
+123456
+-12345
+1234567
+-123456
+
+Testing int64_t write
+9
+-9
+1236
+-1234
+7654321
+-123456
+
+Testing float write
+0.00
+12.99
+23.7
+-141.11
+
+Testing double write
+0.000
+12.99
+23.7
+-294.11
+
+Testing uint8_t hex write
+f
+0f
+ee
+ee
+
+Testing uint16_t hex write
+bcd
+0bcd
+0000
+abcd
+
+Testing uint32_t hex write
+ab
+9abcdef
+
+Testing uint64_t hex write
+ab
+9abcdef

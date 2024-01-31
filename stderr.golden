@@ -1,0 +1,20 @@
+----------------------------------------------
+Running str8_t no space tests
+----------------------------------------------
+sstr8_write_char: no buf space to write "6" to "1234567"
+sstr8_write_bool: no buf space to write "false" to "1234567"
+sstr8_write_string: no buf space to write "string" to "1234567"
+sstr8_write_u8: no buf space to write "0" to "1234567"
+sstr8_write_u16: no buf space to write "0" to "1234567"
+sstr8_write_u32: no buf space to write "0" to "1234567"
+sstr8_write_u64: no buf space to write "0" to "1234567"
+sstr8_write_i8: no buf space to write "0" to "1234567"
+sstr8_write_i16: no buf space to write "0" to "1234567"
+sstr8_write_i32: no buf space to write "0" to "1234567"
+sstr8_write_i64: no buf space to write "0" to "1234567"
+sstr8_write_float: no buf space to write "0.0" to "1234567"
+sstr8_write_double: no buf space to write "0.0" to "1234567"
+sstr8_write_hex_u8: no buf space to write "00" to "1234567"
+sstr8_write_hex_u16: no buf space to write "0000" to "1234567"
+sstr8_write_hex_u32: no buf space to write "00000000" to "1234567"
+sstr8_write_hex_u64: no buf space to write "0000000000000000" to "1234567"
