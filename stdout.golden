@@ -139,3 +139,23 @@ AB
 Testing uint64_t HEX write
 AB
 9ABCDEF
+
+Testing uint8_t xHEX write
+0xF
+0x0F
+0xEE
+0xEE
+
+Testing uint16_t xHEX write
+0xDEF
+0x000F
+0x00EE
+0xEE
+
+Testing uint32_t xHEX write
+0xBEEF
+0x1
+
+Testing uint64_t xHEX write
+0xDEE
+0x11

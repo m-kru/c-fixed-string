@@ -156,6 +156,17 @@ uint8_t _sstr_ptr_len(sstr8_t *s) {
 		uint64_t : sstr8_write_HEX_u64) \
 )(s, x, fw)
 
+/*
+ * fw controls whether value shall have fixed width.
+ */
+#define sstr_write_xHEX(s, x, fw) _Generic((s),  \
+	sstr8_t*: _Generic((x),                  \
+		uint8_t  : sstr8_write_xHEX_u8,  \
+		uint16_t : sstr8_write_xHEX_u16, \
+		uint32_t : sstr8_write_xHEX_u32, \
+		uint64_t : sstr8_write_xHEX_u64) \
+)(s, x, fw)
+
 #define _sstr_function_declarations(N) \
 void sstr ## N ## _write_char     (sstr ## N ##_t *s, char     x);            \
 void sstr ## N ## _write_bool     (sstr ## N ##_t *s, bool     x);            \
@@ -181,7 +192,11 @@ void sstr ## N ## _write_xhex_u64 (sstr ## N ##_t *s, uint64_t x, bool fw);   \
 void sstr ## N ## _write_HEX_u8   (sstr ## N ##_t *s, uint8_t  x, bool fw);   \
 void sstr ## N ## _write_HEX_u16  (sstr ## N ##_t *s, uint16_t x, bool fw);   \
 void sstr ## N ## _write_HEX_u32  (sstr ## N ##_t *s, uint32_t x, bool fw);   \
-void sstr ## N ## _write_HEX_u64  (sstr ## N ##_t *s, uint64_t x, bool fw);   
+void sstr ## N ## _write_HEX_u64  (sstr ## N ##_t *s, uint64_t x, bool fw);   \
+void sstr ## N ## _write_xHEX_u8  (sstr ## N ##_t *s, uint8_t  x, bool fw);   \
+void sstr ## N ## _write_xHEX_u16 (sstr ## N ##_t *s, uint16_t x, bool fw);   \
+void sstr ## N ## _write_xHEX_u32 (sstr ## N ##_t *s, uint32_t x, bool fw);   \
+void sstr ## N ## _write_xHEX_u64 (sstr ## N ##_t *s, uint64_t x, bool fw);   
 
 _sstr_function_declarations(8);
 
